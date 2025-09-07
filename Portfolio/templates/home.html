@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding: 100px 20px 20px 20px; 
+    min-height: calc(100vh - 80px); 
+  }
+
+  .profile-card {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    padding: 30px 25px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #ddd;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+
+  .profile-img {
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #f1f1f1;
+  }
+
+  .profile-info {
+    margin-bottom: 25px;
+  }
+
+  .profile-info h2 {
+    margin: 10px 0;
+    font-size: 24px;
+    color: #444;
+    font-weight: 600;
+  }
+
+  .profile-info h3 {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .profile-info p {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #666;
+  }
+
+  .button-container {
+    margin-top: 30px;
+  }
+
+  .button-container a {
+    text-decoration: none;
+    background-color: #04AA6D;
+    color: #ffffff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+
+  .button-container a:hover {
+    background-color: rgb(0, 56, 37);
+    transform: scale(1.05);
+  }
+
+
+  @media (max-width: 600px) {
+    .profile-container { padding: 120px 10px 20px 10px; }
+    .profile-card { padding: 20px; }
+    .profile-img { width: 100px; height: 100px; }
+    .profile-info h2 { font-size: 20px; }
+    .profile-info h3 { font-size: 16px; }
+    .profile-info p { font-size: 14px; }
+  }
+
+  .message-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    margin: 0;
+    color: #555;
+}
+
+</style>
+
+<div class="profile-container">
+  <div class="profile-card">
+    
+    {% if request.user.profile_pic %}
+      <img src="{{ request.user.profile_pic.url }}" alt="Profile Picture" class="profile-img">
+    {% else %}
+      <img src="{% static 'images/default-avatar.png' %}" alt="Default Avatar" class="profile-img">
+    {% endif %}
+
+    
+    <div class="profile-info">
+      <h2>{{ request.user.get_full_name|default:request.user.username }}</h2>
+      <h3>{{ request.user.email }}</h3>
+      <p><strong>Username:</strong> {{ request.user.username }}</p>
+      <p><strong>User Type:</strong> {{ request.user.user_type }}</p>
+    </div>
+
+    
+    <div class="button-container">
+      <a href="{% url 'edit_profile' %}">Edit Profile</a>
+    </div>
+  </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    /* Table container styling */
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 120px auto 50px auto; /* Push below navbar */
+        padding: 20px;
+        background: linear-gradient(145deg, #ffffff, #f9f9f9);
+        border-radius: 15px;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Heading */
+    .container h1 {
+        text-align: center;
+        color: #00796b;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+        letter-spacing: 1px;
+    }
+
+    /* Table styling */
+    #resume-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    #resume-table th, #resume-table td {
+        padding: 12px 15px;
+        text-align: left;
+        transition: all 0.3s ease;
+    }
+
+    #resume-table th {
+        background-color: #00796b;
+        color: #fff;
+        font-size: 1em;
+        letter-spacing: 0.5px;
+    }
+
+    #resume-table tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #resume-table tr:nth-child(even) {
+        background-color: #f0f9f8;
+    }
+
+    #resume-table tr:hover {
+        background-color: #c8f0e8;
+        transform: scale(1.01);
+    }
+
+    /* Links and buttons inside table */
+    #resume-table a {
+        color: #00796b;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    #resume-table a:hover {
+        color: #004d40;
+        text-decoration: underline;
+    }
+
+    /* Optional: rounded action buttons */
+    #resume-table td a {
+        display: inline-block;
+        padding: 6px 12px;
+        background-color: #b2dfdb;
+        border-radius: 8px;
+        margin-right: 5px;
+        font-size: 0.9em;
+        transition: all 0.3s ease;
+    }
+
+    #resume-table td a:hover {
+        background-color: #00796b;
+        color: #fff;
+        transform: scale(1.05);
+    }
+</style>
+
+    <div class="container">
+        <h1>Contact List</h1>
+        <table id="resume-table">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Messages</th>
+            </tr>
+            {% for m in messages %}
+            <tr>
+                <td>{{ m.name }}</td>
+                <td>{{ m.email}}</td>
+                <td>{{ m.subject }}</td>
+                <td>{{ m.message }}</td>
+                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No resumes available.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock body %}

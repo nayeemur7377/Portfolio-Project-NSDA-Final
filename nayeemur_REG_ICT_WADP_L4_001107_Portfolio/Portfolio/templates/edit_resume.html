@@ -1,0 +1,124 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+    margin: 0;
+    padding: 50px 0;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+
+h2 {
+    text-align: center;
+    color: #00796b;
+    font-size: 2em;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+
+input[type=text], input[type=password], input[type=email], select, input[type=file] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, select:focus, input[type=file]:focus {
+    border-color: #00796b;
+    box-shadow: 0 0 8px rgba(0,121,107,0.2);
+    outline: none;
+}
+
+
+input[type=submit] {
+    width: 100%;
+    background-color: #00796b;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px 0 0 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type=submit]:hover {
+    background-color: #004d40;
+    transform: scale(1.03);
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #004d40;
+}
+
+
+p a {
+    color: #00796b;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+p a:hover {
+    color: #004d40;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px 15px;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+}
+</style>
+
+
+<body>
+    <div class="container">
+    <h1>Edit Resume</h1>
+    <div class="form-container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update Resume">
+        </form>
+    </div>
+</div>
+</body>
+
+
+{% endblock body %}
+  

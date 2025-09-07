@@ -1,0 +1,18 @@
+<div class="topnav">
+  <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+  <a href="{% url 'add_resume' %}" class="{% if request.resolver_match.url_name == 'add_resume' %}active{% endif %}">Add Resume</a>
+  <a href="{% url 'resume_list' %}" class="{% if request.resolver_match.url_name == 'resume_list' %}active{% endif %}">All Resume List</a>
+  <a href="{% url 'contact_page' %}" class="{% if request.resolver_match.url_name == 'contact_page' %}active{% endif %}">Contact us</a>
+
+  {% if request.user.user_type == 'Admin' %}
+    <a href="{% url 'contact_list' %}" class="{% if request.resolver_match.url_name == 'contact_list' %}active{% endif %}">Contact List</a>
+  {% endif %}
+
+  <a href="{% url 'change_password' %}" class="{% if request.resolver_match.url_name == 'change_password' %}active{% endif %}">Change Password</a>
+  <a href="{% url 'logout' %}" class="{% if request.resolver_match.url_name == 'logout' %}active{% endif %}">Logout</a>
+
+  <!-- Current Date -->
+  <span style="float: right; padding: 14px; color: white;">
+    {% now "F j, Y" %}
+  </span>
+</div>
